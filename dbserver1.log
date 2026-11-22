@@ -1,0 +1,14 @@
+2026-11-21T08:00:00.000000+05:30 dbserver1 postgres[2201]: [1-1] user=alice,db=bookstore,app=psql,client=10.0.0.5 LOG:  statement: CREATE TABLE old_table (id int);
+2026-11-21T20:15:03.120000+05:30 dbserver1 postgres[2310]: [4-1] user=alice,db=bookstore,app=psql,client=10.0.0.5 LOG:  statement: CREATE TABLE reviews (id serial PRIMARY KEY, body text);
+2026-11-21T20:16:10.500000+05:30 dbserver1 postgres[2310]: [5-1] user=alice,db=bookstore,app=psql,client=10.0.0.5 LOG:  statement: CREATE UNIQUE INDEX idx_reviews_id ON reviews (id);
+2026-11-21T22:40:00.000000+05:30 dbserver1 postgres[2411]: [1-1] user=bob,db=bookstore,app=pgAdmin 4 - DB:bookstore,client=10.0.0.9 LOG:  statement: SELECT * FROM books;
+2026-11-22T01:05:44.000000+05:30 dbserver1 postgres[2502]: [2-1] user=bob,db=bookstore,app=pgAdmin 4 - DB:bookstore,client=10.0.0.9 LOG:  statement: ALTER TABLE books ADD COLUMN stock int DEFAULT 0;
+2026-11-22T01:07:12.000000+05:30 dbserver1 postgres[2502]: [3-1] user=bob,db=bookstore,app=pgAdmin 4 - DB:bookstore,client=10.0.0.9 LOG:  statement: DROP TABLE temp_import;
+2026-11-22T09:30:00.000000+05:30 dbserver1 postgres[2610]: [7-1] user=carol,db=bookstore,app=psql,client=[local] LOG:  statement: CREATE OR REPLACE FUNCTION slugify(t text) RETURNS text
+2026-11-22T09:30:00.000000+05:30 dbserver1 postgres[2610]: [7-2] #011LANGUAGE sql IMMUTABLE AS $$ SELECT lower(t) $$;
+2026-11-22T09:45:00.000000+05:30 dbserver1 postgres[2611]: [1-1] user=carol,db=bookstore,app=psql,client=[local] LOG:  statement: GRANT SELECT ON books TO readonly;
+2026-11-22T10:00:00.000000+05:30 dbserver1 postgres[2650]: [1-1] user=alice,db=bookstore,app=psql,client=10.0.0.5 LOG:  connection authorized: user=alice database=bookstore
+2026-11-22T10:20:00.000000+05:30 dbserver1 postgres[2651]: [3-1] user=alice,db=bookstore,app=psql,client=10.0.0.5 LOG:  statement: TRUNCATE TABLE reviews;
+2026-11-22T11:00:00.000000+05:30 dbserver1 postgres[2700]: [2-1] user=alice,db=bookstore,app=psql,client=10.0.0.5 LOG:  statement: COMMENT ON TABLE reviews IS 'customer reviews';
+Nov 22 11:30:00 dbserver2 postgres[900]: [1-1] user=dave,db=analytics,app=psql,client=10.0.1.2 LOG:  statement: DROP INDEX idx_old;
+Nov 22 11:31:00 dbserver2 sshd[901]: Accepted publickey for dave

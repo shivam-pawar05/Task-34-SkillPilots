@@ -1,0 +1,10 @@
+timestamp,server,user,database,client,application,command,object_type,action,statement
+2026-11-21T20:15:03+05:30,dbserver1,alice,bookstore,10.0.0.5,psql,CREATE,TABLE,CREATE TABLE,"CREATE TABLE reviews (id serial PRIMARY KEY, body text);"
+2026-11-21T20:16:10+05:30,dbserver1,alice,bookstore,10.0.0.5,psql,CREATE,INDEX,CREATE INDEX,CREATE UNIQUE INDEX idx_reviews_id ON reviews (id);
+2026-11-22T01:05:44+05:30,dbserver1,bob,bookstore,10.0.0.9,pgAdmin 4 - DB:bookstore,ALTER,TABLE,ALTER TABLE,ALTER TABLE books ADD COLUMN stock int DEFAULT 0;
+2026-11-22T01:07:12+05:30,dbserver1,bob,bookstore,10.0.0.9,pgAdmin 4 - DB:bookstore,DROP,TABLE,DROP TABLE,DROP TABLE temp_import;
+2026-11-22T09:30:00+05:30,dbserver1,carol,bookstore,[local],psql,CREATE,FUNCTION,CREATE FUNCTION,CREATE OR REPLACE FUNCTION slugify(t text) RETURNS text LANGUAGE sql IMMUTABLE AS $$ SELECT lower(t) $$;
+2026-11-22T09:45:00+05:30,dbserver1,carol,bookstore,[local],psql,GRANT,,GRANT,GRANT SELECT ON books TO readonly;
+2026-11-22T10:20:00+05:30,dbserver1,alice,bookstore,10.0.0.5,psql,TRUNCATE,,TRUNCATE,TRUNCATE TABLE reviews;
+2026-11-22T11:00:00+05:30,dbserver1,alice,bookstore,10.0.0.5,psql,COMMENT,TABLE,COMMENT TABLE,COMMENT ON TABLE reviews IS 'customer reviews';
+2026-11-22T11:30:00+05:30,dbserver2,dave,analytics,10.0.1.2,psql,DROP,INDEX,DROP INDEX,DROP INDEX idx_old;

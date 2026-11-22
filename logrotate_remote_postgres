@@ -1,0 +1,12 @@
+# /etc/logrotate.d/remote-postgres on the collector (keep 90 days for audit)
+/var/log/remote/postgres/*.log {
+    daily
+    rotate 90
+    compress
+    delaycompress
+    missingok
+    notifempty
+    postrotate
+        /usr/bin/systemctl kill -s HUP rsyslog.service >/dev/null 2>&1 || true
+    endscript
+}

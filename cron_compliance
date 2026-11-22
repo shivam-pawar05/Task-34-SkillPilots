@@ -1,0 +1,3 @@
+# /etc/cron.d/pg-compliance-report  (on the collector; every day at 06:00)
+# Note: only the current .log files are read; rotated .gz files are older than 24 h anyway.
+0 6 * * * syslog . /etc/pg-compliance.env && /usr/bin/python3 /opt/pg-compliance/compliance_report.py --log-glob "/var/log/remote/postgres/*.log" --hours 24 --output-dir /var/reports/pg --email-to compliance@example.com
